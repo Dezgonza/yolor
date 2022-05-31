@@ -585,7 +585,7 @@ class Darknet(nn.Module):
 
         for i, module in enumerate(self.module_list):
             name = module.__class__.__name__
-            #print(name)
+            print(name)
             if name in ['WeightedFeatureFusion', 'FeatureConcat', 'FeatureConcat2', 'FeatureConcat3', 'FeatureConcat_l', 'ScaleChannel', 'ShiftChannel', 'ShiftChannel2D', 'ControlChannel', 'ControlChannel2D', 'AlternateChannel', 'AlternateChannel2D', 'SelectChannel', 'SelectChannel2D', 'ScaleSpatial']:  # sum, concat
                 if verbose:
                     l = [i - 1] + module.layers  # layers
@@ -599,8 +599,8 @@ class Darknet(nn.Module):
             elif name == 'JDELayer':
                 yolo_out.append(module(x, out))
             else:  # run module directly, i.e. mtype = 'convolutional', 'upsample', 'maxpool', 'batchnorm2d' etc.
-                #print(module)
-                #print(x.shape)
+                print(module)
+                print(x.shape)
                 x = module(x)
 
             out.append(x if self.routs[i] else [])
